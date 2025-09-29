@@ -57,12 +57,12 @@ const authenticateToken = async (req, res, next) => {
 };
 
 // Health check
-app.get('/health', (req, res) => {
+app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
 });
 
 // Register user
-app.post('/auth/register', async (req, res) => {
+app.post('/api/auth/register', async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -107,7 +107,7 @@ app.post('/auth/register', async (req, res) => {
 });
 
 // Login user
-app.post('/auth/login', async (req, res) => {
+app.post('/api/auth/login', async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -162,7 +162,7 @@ app.post('/auth/login', async (req, res) => {
 });
 
 // Logout user
-app.post('/auth/logout', authenticateToken, async (req, res) => {
+app.post('/api/auth/logout', authenticateToken, async (req, res) => {
   try {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
@@ -181,7 +181,7 @@ app.post('/auth/logout', authenticateToken, async (req, res) => {
 });
 
 // Check license status
-app.get('/license', authenticateToken, async (req, res) => {
+app.get('/api/license', authenticateToken, async (req, res) => {
   try {
     const { data: subscription, error } = await supabase
       .from('subscriptions')
@@ -223,7 +223,7 @@ app.get('/license', authenticateToken, async (req, res) => {
 });
 
 // Create Stripe checkout session
-app.post('/stripe/create-checkout-session', authenticateToken, async (req, res) => {
+app.post('/api/stripe/create-checkout-session', authenticateToken, async (req, res) => {
   try {
     const { priceId } = req.body;
 
@@ -263,7 +263,7 @@ app.post('/stripe/create-checkout-session', authenticateToken, async (req, res) 
 });
 
 // Stripe webhook
-app.post('/stripe/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
+app.post('/api/stripe/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
   const sig = req.headers['stripe-signature'];
   let event;
 
