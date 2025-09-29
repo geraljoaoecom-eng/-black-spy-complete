@@ -78,6 +78,21 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
 });
 
+// Landing page
+app.get('/', (req, res) => {
+  try {
+    const fs = require('fs');
+    const path = require('path');
+    const htmlPath = path.join(__dirname, '..', 'index.html');
+    const htmlContent = fs.readFileSync(htmlPath, 'utf8');
+    res.setHeader('Content-Type', 'text/html');
+    res.status(200).send(htmlContent);
+  } catch (error) {
+    console.error('Error serving landing page:', error);
+    res.status(500).send('Error loading page');
+  }
+});
+
 // Register user
 app.post('/api/auth/register', async (req, res) => {
   try {
