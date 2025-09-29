@@ -681,7 +681,7 @@
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+            gap: 1rem;
             margin-top: 3rem;
             max-width: 1200px;
             margin-left: auto;
@@ -696,18 +696,19 @@
         }
 
         .testimonial-card {
-            background: rgba(20, 20, 20, 0.9);
+            background: #000000;
             border: 2px solid var(--primary-gold);
-            border-radius: 8px;
-            padding: 2rem;
+            border-radius: 2px;
+            padding: 1.5rem 1.8rem;
             text-align: left;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            min-height: 280px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            min-height: 320px;
             display: flex;
             flex-direction: column;
+            aspect-ratio: 1.2;
         }
 
         .testimonial-card:hover {
@@ -717,19 +718,19 @@
         }
 
         .stars {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--primary-gold);
-            margin-bottom: 1rem;
-            text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
-            letter-spacing: 2px;
+            margin-bottom: 0.8rem;
+            text-shadow: 0 0 6px rgba(255, 215, 0, 0.8);
+            letter-spacing: 1px;
         }
 
         .testimonial-text {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-style: italic;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
             color: #fff;
-            line-height: 1.5;
+            line-height: 1.4;
             flex-grow: 1;
             text-align: left;
         }
@@ -737,14 +738,14 @@
         .testimonial-author {
             font-weight: 700;
             color: var(--primary-gold);
-            font-size: 1rem;
-            margin-bottom: 0.3rem;
-            text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+            font-size: 0.95rem;
+            margin-bottom: 0.2rem;
+            text-shadow: 0 0 4px rgba(255, 215, 0, 0.5);
         }
 
         .testimonial-role {
             color: var(--secondary-light);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 400;
         }
 
