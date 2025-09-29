@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BLACK SPY - Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="popup-container">
+    <div class="popup-header">
+      <img src="https://i.postimg.cc/sDVgbd9k/black-spy.png" alt="BLACK SPY" class="popup-main-logo" />
+      <h1 class="popup-title">BLACK SPY</h1>
+    </div>
+    
+    <!-- Tela de Login -->
+    <div id="loginScreen" class="login-screen">
+      <div class="login-form">
+        <h2>Fazer Login</h2>
+        <p class="login-subtitle">Acesse sua conta para usar a ferramenta</p>
+        
+        <div class="form-group">
+          <label for="emailInput" class="form-label">Email</label>
+          <input id="emailInput" type="email" class="form-input" placeholder="seu@email.com" />
+        </div>
+        
+        <div class="form-group">
+          <label for="passwordInput" class="form-label">Senha</label>
+          <input id="passwordInput" type="password" class="form-input" placeholder="Sua senha" />
+        </div>
+        
+        <button id="loginBtn" class="btn primary">Entrar</button>
+        
+        <div class="login-actions">
+          <button id="manageSubscriptionBtn" class="btn secondary">Gerir Subscrição</button>
+        </div>
+        
+        <div id="loginError" class="error-message" style="display: none;">
+          Email ou senha incorretos
+        </div>
+      </div>
+    </div>
+    
+    <!-- Tela Principal (após login) -->
+    <div id="mainScreen" class="main-screen" style="display: none;">
+      <div class="user-info">
+        <span id="userEmail" class="user-email"></span>
+        <button id="logoutBtn" class="btn secondary small">Sair</button>
+      </div>
+      
+      <div class="tool-controls">
+        <label for="thresholdInput" class="popup-label">Quantidade de anúncios</label>
+        <input id="thresholdInput" type="number" min="2" step="1" value="2" class="popup-input" />
+        
+        <label class="popup-label" for="onlyMarkedToggle">
+          <input id="onlyMarkedToggle" type="checkbox" /> Mostrar apenas anúncios marcados
+        </label>
+        
+        <div class="popup-actions">
+          <button id="toggleScrollBtn" class="btn primary">Iniciar Pesquisa</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
