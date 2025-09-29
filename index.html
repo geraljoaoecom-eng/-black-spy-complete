@@ -1237,10 +1237,8 @@
 
         // Checkout function
         function startCheckout(priceId) {
-            const email = prompt('Digite seu email:');
-            if (email) {
-                window.location.href = `https://black-spy-api.vercel.app/api/stripe/create-checkout-session?priceId=${priceId}&email=${encodeURIComponent(email)}`;
-            }
+            // Vai direto para o Stripe Checkout
+            window.location.href = `https://black-spy-api.vercel.app/api/stripe/create-checkout-session?priceId=${priceId}`;
         }
 
         // Add stagger animation to feature cards

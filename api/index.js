@@ -263,12 +263,8 @@ app.get('/api/stripe/create-checkout-session', async (req, res) => {
       return res.status(400).json({ error: 'Price ID é obrigatório' });
     }
 
-    if (!email) {
-      return res.status(400).json({ error: 'Email é obrigatório' });
-    }
-
     const session = await stripeClient.checkout.sessions.create({
-      customer_email: email,
+      customer_email: email || undefined, // Email opcional
       payment_method_types: ['card'],
       line_items: [
         {
@@ -280,7 +276,7 @@ app.get('/api/stripe/create-checkout-session', async (req, res) => {
       success_url: `https://black-spy-api.vercel.app/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `https://black-spy-api.vercel.app/cancel`,
       metadata: {
-        email: email,
+        email: email || 'unknown',
       },
     });
 
