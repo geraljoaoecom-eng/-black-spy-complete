@@ -11,7 +11,7 @@ const USER_EMAIL_KEY = 'userEmail';
 const SESSION_EXPIRES_KEY = 'sessionExpires';
 
 // Configuração da API
-const API_BASE_URL = 'https://black-spy-backend.vercel.app/api';
+const API_BASE_URL = 'https://black-spy-api.vercel.app/api';
 
 // Funções de comunicação com API
 async function apiRequest(endpoint, options = {}) {

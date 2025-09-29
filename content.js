@@ -511,7 +511,7 @@ async function renderSidebar() {
       
       try {
         // Fazer login via API
-        const response = await fetch('https://black-spy-backend.vercel.app/api/auth/login', {
+        const response = await fetch('https://black-spy-api.vercel.app/api/auth/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -680,7 +680,7 @@ async function renderSidebar() {
         return false;
       }
 
-      const response = await fetch('https://black-spy-backend.vercel.app/api/license', {
+      const response = await fetch('https://black-spy-api.vercel.app/api/license', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${userToken}`,
