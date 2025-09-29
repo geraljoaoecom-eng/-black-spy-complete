@@ -19,8 +19,15 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || '*',
-  credentials: true
+  origin: [
+    process.env.CORS_ORIGIN || 'https://black-spy-api.vercel.app',
+    /^chrome-extension:\/\/.*$/,
+    /^moz-extension:\/\/.*$/,
+    /^safari-extension:\/\/.*$/
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'X-Requested-With']
 }));
 app.use(express.json());
 
