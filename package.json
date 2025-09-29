@@ -2,7 +2,7 @@
   "name": "black-spy-backend",
   "version": "1.0.0",
   "description": "BLACK SPY Backend API with Supabase and Stripe",
-  "main": "server.js",
+  "main": "api/index.js",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
