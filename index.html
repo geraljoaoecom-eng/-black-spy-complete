@@ -854,7 +854,7 @@
             .hero h1 {
                 font-size: 2.5rem;
             }
-
+            
             .hero p {
                 font-size: 1rem;
             }
@@ -978,9 +978,9 @@
                 <div class="hero-logo">
                     <img src="https://i.imgur.com/WfjRAjV.png" alt="BLACK SPY Logo" class="main-logo">
                 </div>
-                <h1>BLACK SPY</h1>
-                <p>A ferramenta mais avançada para análise e filtragem de anúncios</p>
-                <a href="#pricing" class="cta-button">Começar Agora</a>
+            <h1>BLACK SPY</h1>
+            <p>A ferramenta mais avançada para análise e filtragem de anúncios</p>
+            <a href="#pricing" class="cta-button">Começar Agora</a>
             </div>
         </div>
     </section>
@@ -1084,7 +1084,7 @@
                     <p class="testimonial-text">"A BLACK SPY é a única ferramenta que realmente FUNCIONA na Meta ADS Library! Nós já usamos à muito tempo! E é uma pena que ela agora esteja à disposição de toda a gente! Era uma grande vantagem competitiva da nossa empresa!"</p>
                     <div class="testimonial-author">João Cortez</div>
                     <div class="testimonial-role">Grupo SIX</div>
-                </div>
+                    </div>
                 <div class="testimonial-card fade-in">
                     <div class="stars">★★★★★</div>
                     <p class="testimonial-text">"A deteçao de anuncios com copias é INCRIVEL! Nunca mais perdemos tempo com espionagem nativa.. A BLACK SPY é a única ferramenta que nós usamos neste momento para encontrar ofertas para modelar"</p>
@@ -1096,7 +1096,7 @@
                     <p class="testimonial-text">"A interface é muito simples de usar! Recomendo para quem está a começar e quer ter acesso ao que mais está escalado em cada País!"</p>
                     <div class="testimonial-author">Fabio Cavalcante</div>
                     <div class="testimonial-role">Player 8D</div>
-                </div>
+                    </div>
             </div>
         </div>
     </section>
@@ -1235,10 +1235,11 @@
 
         // Testimonials grid - no slider needed
 
-        // Checkout function
+        // Checkout function - TEMPORÁRIO
         function startCheckout(priceId) {
-            // Vai direto para o Stripe Checkout
-            window.location.href = `https://black-spy-api.vercel.app/api/stripe/create-checkout-session?priceId=${priceId}`;
+            // SOLUÇÃO TEMPORÁRIA - usar Stripe diretamente
+            const stripeUrl = `https://checkout.stripe.com/c/pay/${priceId}`;
+            window.open(stripeUrl, '_blank');
         }
 
         // Add stagger animation to feature cards
