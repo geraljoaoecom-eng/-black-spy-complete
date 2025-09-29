@@ -239,7 +239,44 @@ app.get('/api/license', authenticateToken, async (req, res) => {
   }
 });
 
-// Create Stripe checkout session
+// Create Stripe checkout session (GET para página de vendas)
+app.get('/api/stripe/create-checkout-session', async (req, res) => {
+  try {
+    const { priceId, email } = req.query;
+
+    if (!priceId) {
+      return res.status(400).json({ error: 'Price ID é obrigatório' });
+    }
+
+    if (!email) {
+      return res.status(400).json({ error: 'Email é obrigatório' });
+    }
+
+    const session = await stripeClient.checkout.sessions.create({
+      customer_email: email,
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price: priceId,
+          quantity: 1,
+        },
+      ],
+      mode: 'subscription',
+      success_url: `https://black-spy-api.vercel.app/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `https://black-spy-api.vercel.app/cancel`,
+      metadata: {
+        email: email,
+      },
+    });
+
+    res.redirect(session.url);
+  } catch (error) {
+    console.error('Stripe checkout error:', error);
+    res.status(500).json({ error: 'Erro ao criar sessão de checkout' });
+  }
+});
+
+// Create Stripe checkout session (POST para extensão)
 app.post('/api/stripe/create-checkout-session', authenticateToken, async (req, res) => {
   try {
     const { priceId } = req.body;
@@ -265,8 +302,8 @@ app.post('/api/stripe/create-checkout-session', authenticateToken, async (req, r
         },
       ],
       mode: 'subscription',
-      success_url: `${process.env.CORS_ORIGIN}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.CORS_ORIGIN}/cancel`,
+      success_url: `https://black-spy-api.vercel.app/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `https://black-spy-api.vercel.app/cancel`,
       metadata: {
         user_id: req.user.id,
       },
