@@ -557,52 +557,65 @@
             background: linear-gradient(135deg, rgba(51, 51, 51, 0.3), rgba(0, 0, 0, 0.8));
         }
 
+        .pricing-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--secondary-light);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
             margin-top: 3rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .pricing-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
+            background: #000000;
             border: 1px solid var(--glass-border);
-            border-radius: 20px;
+            border-radius: 8px;
             padding: 2rem;
             text-align: center;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
         }
 
         .pricing-card.popular {
             border: 2px solid var(--primary-gold);
-            transform: scale(1.05);
-            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
         }
 
-        .pricing-card.popular::before {
-            content: 'MAIS POPULAR';
-            position: absolute;
-            top: -1px;
-            left: 50%;
-            transform: translateX(-50%);
+        .popular-badge {
             background: var(--primary-gold);
             color: var(--primary-black);
-            padding: 0.5rem 2rem;
-            border-radius: 0 0 15px 15px;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
             font-weight: 700;
             font-size: 0.8rem;
+            margin-bottom: 1rem;
+            display: inline-block;
         }
 
         .pricing-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(255, 215, 0, 0.2);
-        }
-
-        .pricing-card.popular:hover {
-            transform: scale(1.05) translateY(-10px);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.1);
         }
 
         .pricing-card h3 {
@@ -613,27 +626,42 @@
         }
 
         .price {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 800;
             color: var(--primary-gold);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .price-period {
             font-size: 1rem;
             color: var(--secondary-light);
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        .savings-badge {
+            background: var(--primary-gold);
+            color: var(--primary-black);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
         }
 
         .pricing-features {
             list-style: none;
-            margin: 2rem 0;
+            margin: 1.5rem 0;
+            flex-grow: 1;
         }
 
         .pricing-features li {
-            padding: 0.5rem 0;
-            color: var(--secondary-light);
+            padding: 0.4rem 0;
+            color: #fff;
             position: relative;
             padding-left: 1.5rem;
+            text-align: left;
         }
 
         .pricing-features li::before {
@@ -645,21 +673,27 @@
         }
 
         .pricing-btn {
-            background: linear-gradient(45deg, var(--primary-gold), #FFA500);
-            color: var(--primary-black);
-            padding: 1rem 2rem;
+            background: #333333;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
             border-radius: 25px;
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 600;
             transition: all 0.3s ease;
             display: inline-block;
             width: 100%;
             text-align: center;
+            margin-top: auto;
+        }
+
+        .pricing-btn.popular-btn {
+            background: var(--primary-gold);
+            color: var(--primary-black);
         }
 
         .pricing-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
         }
 
         /* Testimonials Section */
@@ -993,41 +1027,45 @@
     <!-- Pricing Section -->
     <section class="pricing" id="pricing">
         <div class="container">
-            <h2 class="section-title fade-in">Preços</h2>
+            <h2 class="section-title fade-in">Escolha Seu Plano</h2>
+            <p class="pricing-subtitle fade-in">Planos flexíveis para atender às suas necessidades específicas</p>
             <div class="pricing-grid">
                 <div class="pricing-card fade-in">
                     <h3>Mensal</h3>
-                    <div class="price">$20<span class="price-period">/mês</span></div>
+                    <div class="price">$20<span class="price-period">por mês</span></div>
                     <ul class="pricing-features">
-                        <li>Análise de até 10.000 anúncios</li>
-                        <li>Relatórios básicos</li>
+                        <li>Análise limitada de anúncios</li>
+                        <li>Detecção de duplicados</li>
+                        <li>Auto-scroll inteligente</li>
+                        <li>Filtros básicos</li>
                         <li>Suporte por email</li>
-                        <li>Atualizações automáticas</li>
                     </ul>
                     <a href="#" class="pricing-btn" onclick="startCheckout('price_123')">Escolher Plano</a>
                 </div>
                 <div class="pricing-card popular fade-in">
+                    <div class="popular-badge">Mais Popular</div>
                     <h3>Trimestral</h3>
-                    <div class="price">$50<span class="price-period">/3 meses</span></div>
+                    <div class="price">$50<span class="price-period">por trimestre</span></div>
+                    <div class="savings-badge">Economize 17%</div>
                     <ul class="pricing-features">
-                        <li>Análise de até 50.000 anúncios</li>
+                        <li>Tudo do plano mensal</li>
                         <li>Relatórios avançados</li>
-                        <li>Suporte prioritário</li>
-                        <li>API personalizada</li>
-                        <li>Integração com ferramentas</li>
+                        <li>Filtros personalizados</li>
+                        <li>Prioridade no suporte</li>
+                        <li>Atualizações exclusivas</li>
                     </ul>
-                    <a href="#" class="pricing-btn" onclick="startCheckout('price_456')">Escolher Plano</a>
+                    <a href="#" class="pricing-btn popular-btn" onclick="startCheckout('price_456')">Escolher Plano</a>
                 </div>
                 <div class="pricing-card fade-in">
                     <h3>Anual</h3>
-                    <div class="price">$150<span class="price-period">/ano</span></div>
+                    <div class="price">$150<span class="price-period">por ano</span></div>
+                    <div class="savings-badge">Economize 38%</div>
                     <ul class="pricing-features">
-                        <li>Análise ilimitada</li>
-                        <li>Relatórios personalizados</li>
-                        <li>Suporte 24/7</li>
-                        <li>API completa</li>
-                        <li>Consultoria especializada</li>
+                        <li>Tudo do plano trimestral</li>
+                        <li>API personalizada</li>
+                        <li>Suporte prioritário 24/7</li>
                         <li>Treinamento personalizado</li>
+                        <li>Recursos beta exclusivos</li>
                     </ul>
                     <a href="#" class="pricing-btn" onclick="startCheckout('price_789')">Escolher Plano</a>
                 </div>
