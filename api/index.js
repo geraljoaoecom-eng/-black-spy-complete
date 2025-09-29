@@ -1,10 +1,10 @@
 // Vercel serverless function
-import express from 'express';
-import cors from 'cors';
-import stripe from 'stripe';
-import { createClient } from '@supabase/supabase-js';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+const express = require('express');
+const cors = require('cors');
+const stripe = require('stripe');
+const { createClient } = require('@supabase/supabase-js');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 // Initialize Stripe
 const stripeClient = stripe(process.env.STRIPE_SECRET_KEY);
