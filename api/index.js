@@ -17,18 +17,28 @@ const supabase = createClient(
 
 const app = express();
 
-// Middleware
-app.use(cors({
-  origin: [
-    process.env.CORS_ORIGIN || 'https://black-spy-api.vercel.app',
-    /^chrome-extension:\/\/.*$/,
-    /^moz-extension:\/\/.*$/,
-    /^safari-extension:\/\/.*$/
-  ],
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'X-Requested-With']
-}));
+// Middleware CORS personalizado
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  
+  // Permitir todas as origens para desenvolvimento
+  if (origin) {
+    res.header('Access-Control-Allow-Origin', origin);
+  } else {
+    res.header('Access-Control-Allow-Origin', '*');
+  }
+  
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Origin, X-Requested-With');
+  
+  if (req.method === 'OPTIONS') {
+    res.sendStatus(200);
+    return;
+  }
+  
+  next();
+});
 app.use(express.json());
 
 // Auth middleware
