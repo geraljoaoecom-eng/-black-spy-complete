@@ -9,7 +9,12 @@
     "setup-stripe": "node setup-stripe.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["black-spy", "api", "supabase", "stripe"],
+  "keywords": [
+    "black-spy",
+    "api",
+    "supabase",
+    "stripe"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
