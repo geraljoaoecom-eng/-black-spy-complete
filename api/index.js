@@ -365,4 +365,4 @@ function getPlanType(priceId) {
   return 'unknown';
 }
 
-module.exports = app;
+export default app;
