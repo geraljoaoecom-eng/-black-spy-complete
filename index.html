@@ -668,44 +668,83 @@
             background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(51, 51, 51, 0.3));
         }
 
-        .testimonials-slider {
-            position: relative;
-            overflow: hidden;
+        .testimonials-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--secondary-light);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
             margin-top: 3rem;
         }
 
-        .testimonials-container {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-
-        .testimonial {
-            min-width: 100%;
+        .testimonial-card {
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
             padding: 2rem;
             text-align: center;
-            margin: 0 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-gold), #FFA500);
+            transform: scaleX(0);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .stars {
+            font-size: 1.5rem;
+            color: var(--primary-gold);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
 
         .testimonial-text {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-style: italic;
             margin-bottom: 1.5rem;
-            color: var(--secondary-light);
+            color: #fff;
             line-height: 1.6;
+            text-align: left;
         }
 
         .testimonial-author {
             font-weight: 700;
             color: var(--primary-gold);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
         }
 
         .testimonial-role {
             color: var(--secondary-light);
             font-size: 0.9rem;
+            font-weight: 500;
         }
 
         /* Footer */
@@ -990,24 +1029,26 @@
     <!-- Testimonials Section -->
     <section class="testimonials" id="testimonials">
         <div class="container">
-            <h2 class="section-title fade-in">Depoimentos</h2>
-            <div class="testimonials-slider">
-                <div class="testimonials-container" id="testimonials-container">
-                    <div class="testimonial">
-                        <p class="testimonial-text">"O BLACK SPY revolucionou completamente a forma como analisamos anúncios. A precisão e velocidade são impressionantes!"</p>
-                        <div class="testimonial-author">João Silva</div>
-                        <div class="testimonial-role">CEO, TechCorp</div>
-                    </div>
-                    <div class="testimonial">
-                        <p class="testimonial-text">"Ferramenta essencial para qualquer profissional de marketing digital. Os insights são valiosos demais!"</p>
-                        <div class="testimonial-author">Maria Santos</div>
-                        <div class="testimonial-role">Diretora de Marketing</div>
-                    </div>
-                    <div class="testimonial">
-                        <p class="testimonial-text">"Interface intuitiva e resultados precisos. Recomendo para qualquer empresa que trabalhe com anúncios."</p>
-                        <div class="testimonial-author">Pedro Costa</div>
-                        <div class="testimonial-role">Especialista em PPC</div>
-                    </div>
+            <h2 class="section-title fade-in">O Que Nossos Clientes Dizem</h2>
+            <p class="testimonials-subtitle fade-in">Descubra como o BLACK SPY está transformando o trabalho de profissionais em todo o país</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"A BLACK SPY é a única ferramenta que realmente FUNCIONA na Meta ADS Library! Nós já usamos à muito tempo! E é uma pena que ela agora esteja à disposição de toda a gente! Era uma grande vantagem competitiva da nossa empresa!"</p>
+                    <div class="testimonial-author">João Cortez</div>
+                    <div class="testimonial-role">Grupo SIX</div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"A deteçao de anuncios com copias é INCRIVEL! Nunca mais perdemos tempo com espionagem nativa.. A BLACK SPY é a única ferramenta que nós usamos neste momento para encontrar ofertas para modelar"</p>
+                    <div class="testimonial-author">Renato Santoro</div>
+                    <div class="testimonial-role">Instituto Experience</div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"A interface é muito simples de usar! Recomendo para quem está a começar e quer ter acesso ao que mais está escalado em cada País!"</p>
+                    <div class="testimonial-author">Fabio Cavalcante</div>
+                    <div class="testimonial-role">Player 8D</div>
                 </div>
             </div>
         </div>
@@ -1145,18 +1186,7 @@
             });
         });
 
-        // Testimonials slider
-        let currentTestimonial = 0;
-        const testimonials = document.querySelectorAll('.testimonial');
-        const container = document.getElementById('testimonials-container');
-
-        function nextTestimonial() {
-            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-            container.style.transform = `translateX(-${currentTestimonial * 100}%)`;
-        }
-
-        // Auto-rotate testimonials
-        setInterval(nextTestimonial, 5000);
+        // Testimonials grid - no slider needed
 
         // Checkout function
         function startCheckout(priceId) {
