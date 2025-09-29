@@ -20,6 +20,8 @@ git clone https://github.com/SEU_USERNAME/black-spy.git
 cd black-spy
 ```
 
+> 📋 **Guia completo de deploy**: Veja [DEPLOY.md](DEPLOY.md) para instruções detalhadas
+
 ### 2. Configure o Backend
 ```bash
 cd black-spy-backend
