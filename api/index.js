@@ -1,10 +1,13 @@
 // Vercel serverless function
-const express = require('express');
-const cors = require('cors');
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const { createClient } = require('@supabase/supabase-js');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+import express from 'express';
+import cors from 'cors';
+import stripe from 'stripe';
+import { createClient } from '@supabase/supabase-js';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+
+// Initialize Stripe
+const stripeClient = stripe(process.env.STRIPE_SECRET_KEY);
 
 // Initialize Supabase client
 const supabase = createClient(
@@ -235,7 +238,7 @@ app.post('/stripe/create-checkout-session', authenticateToken, async (req, res) 
       .eq('id', req.user.id)
       .single();
 
-    const session = await stripe.checkout.sessions.create({
+    const session = await stripeClient.checkout.sessions.create({
       customer_email: user.email,
       payment_method_types: ['card'],
       line_items: [
@@ -265,7 +268,7 @@ app.post('/stripe/webhook', express.raw({ type: 'application/json' }), async (re
   let event;
 
   try {
-    event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
+    event = stripeClient.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
   } catch (err) {
     console.error('Webhook signature verification failed:', err.message);
     return res.status(400).send(`Webhook Error: ${err.message}`);
@@ -312,7 +315,7 @@ app.post('/stripe/webhook', express.raw({ type: 'application/json' }), async (re
 // Webhook handlers
 async function handleCheckoutCompleted(session) {
   try {
-    const subscription = await stripe.subscriptions.retrieve(session.subscription);
+    const subscription = await stripeClient.subscriptions.retrieve(session.subscription);
     
     await supabase
       .from('subscriptions')
