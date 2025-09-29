@@ -681,11 +681,12 @@
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
+            gap: 0.8rem;
             margin-top: 3rem;
-            max-width: 1200px;
+            max-width: 1400px;
             margin-left: auto;
             margin-right: auto;
+            padding: 0 1rem;
         }
 
         @media (max-width: 768px) {
@@ -705,10 +706,11 @@
             position: relative;
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-            min-height: 320px;
+            min-height: 300px;
             display: flex;
             flex-direction: column;
-            aspect-ratio: 1.2;
+            aspect-ratio: 1.4;
+            width: 100%;
         }
 
         .testimonial-card:hover {
