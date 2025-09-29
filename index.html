@@ -44,6 +44,15 @@
             font-size: 1.8rem;
             font-weight: bold;
             color: #ffd700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-logo {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
         }
 
         .nav-links {
@@ -66,6 +75,22 @@
             padding: 120px 0 80px;
             text-align: center;
             background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        }
+
+        .hero-logo {
+            margin-bottom: 2rem;
+        }
+
+        .main-logo {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
+            transition: transform 0.3s ease;
+        }
+
+        .main-logo:hover {
+            transform: scale(1.1);
         }
 
         .hero h1 {
@@ -325,7 +350,10 @@
 <body>
     <header>
         <nav class="container">
-            <div class="logo">BLACK SPY</div>
+            <div class="logo">
+                <img src="https://i.postimg.cc/sDVgbd9k/black-spy.png" alt="BLACK SPY" class="nav-logo">
+                <span>BLACK SPY</span>
+            </div>
             <ul class="nav-links">
                 <li><a href="#features">Recursos</a></li>
                 <li><a href="#pricing">Preços</a></li>
@@ -337,6 +365,9 @@
 
     <section class="hero">
         <div class="container">
+            <div class="hero-logo">
+                <img src="https://i.postimg.cc/sDVgbd9k/black-spy.png" alt="BLACK SPY Logo" class="main-logo">
+            </div>
             <h1>BLACK SPY</h1>
             <p>A ferramenta mais avançada para análise e filtragem de anúncios</p>
             <a href="#pricing" class="cta-button">Começar Agora</a>
